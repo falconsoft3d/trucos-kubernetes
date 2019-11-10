@@ -12,7 +12,7 @@ kubectl get nodes
 # Creando un Namespace
 
 ```
-00-namespace.yaml
+nano 00-namespace.yaml
 ```
 
 ```
