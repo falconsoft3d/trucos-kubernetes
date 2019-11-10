@@ -51,6 +51,11 @@ spec:
 kubectl -n testing  apply -f 01-wordpress-service.yaml
 ```
 
+# Saber los servicios
+```
+kubectl -n testing get svc
+```
+
 
 # Creamos un ReplicationController
 ```
