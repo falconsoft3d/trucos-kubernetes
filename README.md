@@ -22,9 +22,70 @@ metadata:
   name: testing
 ```
 
+```
+kubectl apply -f 00-namespace.yaml
+```
+
+# Listar Namespace
+```
+kubectl get ns
+```
+
+# Creamos un servicio
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30001
+  selector:
+    role: wordpress
+```
 
 ```
-kubctl apply 00-namespace.yaml
+kubectl -n testing  apply -f 01-wordpress-service.yaml
+```
+
+
+# Creamos un ReplicationController
+```
+
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: wordpress
+spec:
+  replicas: 1
+  template:
+    metadata:
+        labels:
+            role: wordpress
+    spec:
+        containers:
+        - name: wordpress
+          image: wordpress:php7.1-apache
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+```
+
+```
+kubectl -n testing  apply -f 02-wordpress-service.yaml
+```
+
+# Obtenemos pods
+```
+kubectl -n testing get pods
+```
+
+# Obtenemos el IP publico
+```
+kubectl get nodes -o wide
 ```
 
 
