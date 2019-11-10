@@ -88,6 +88,11 @@ kubectl -n testing  apply -f 02-wordpress-service.yaml
 kubectl -n testing get pods
 ```
 
+# Borrar el pods
+```
+kubectl -n testing delete pod wordpress-h7x2h
+```
+
 # Obtenemos el IP publico
 ```
 kubectl get nodes -o wide
