@@ -98,4 +98,28 @@ kubectl -n testing delete pod wordpress-h7x2h
 kubectl get nodes -o wide
 ```
 
+# Creamos un LoadBalancer
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: wordpress-lb
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+  selector:
+    role: wordpress
+```
+
+```
+kubectl -n testing apply -f 03-wordpress-service.yaml
+```
+
+
+
+
 
